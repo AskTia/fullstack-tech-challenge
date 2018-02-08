@@ -2,9 +2,9 @@
 Estimated time commitment: 2-4 hours. The task is not timed and you can work at your own pace.
 
 ## Task
-Your task is to develop a UI for users to reliably view their bank trasactions including deposts, withdrawals and transfers.
+Your task is to develop a UI for users to reliably view their bank transactions including deposits, withdrawals and transfers.
 
-Unfortunately, you only have access to a third party API created by the underlying bank to access ledgers, which is a very unreliable api in that ledger entries may have duplicates, they may not be retrieved in the order in which they occurred, or they may not have all of the entries that happened.
+Unfortunately, you only have access to a third party API created by the underlying bank to access ledgers, which is a very unreliable API in that ledger entries may have duplicates, they may not be retrieved in the order in which they occurred, or they may not have all of the entries that happened.
 
 Regardless of the unreliable API, your task is to display the most accurate ledger to users as possible.
 
