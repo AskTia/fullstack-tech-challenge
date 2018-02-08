@@ -1,0 +1,12 @@
+{
+  "name": "tia-fullstack-challenge",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app.js",
+    "start-debug": "node $NODE_DEBUG_OPTION app.js"
+  },
+  "dependencies": {
+    "express": "^4.16.2"
+  }
+}
