@@ -99,5 +99,7 @@ You are not required to write code to address these points, but consider them fo
 
 * What measures should be taken to protect the site hosting this service?
 * Respond to erroneous or malformed requests with appropriate HTTP status codes.
+* Be prepared to discuss your choice of given UI components (e.g. "Bootstrap", hand-rolled, etc)
+* Be prepared to discuss rendering differences (if any) of your code on current popular browsers
 * Implement logging
 * Be creative!
