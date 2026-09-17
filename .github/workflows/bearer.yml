@@ -7,6 +7,9 @@ on:
       - main
       - staging
 
+permissions:
+  contents: read
+
 jobs:
   bearer:
     runs-on: ubuntu-latest
@@ -22,7 +25,7 @@ jobs:
         with:
           repository: AskTia/devops
           ref: main
-          token: ${{ secrets.TIA_GITHUB_PAT }}
+          ssh-key: ${{ secrets.TIA_DEVOPS_RO_DEPLOY_KEY }}
           path: .github/actions
       #this checks out the bearer repo
       - uses: ./.github/actions/bearer/lib
@@ -36,5 +39,5 @@ jobs:
         with:
           repository: AskTia/devops
           ref: main
-          token: ${{ secrets.TIA_GITHUB_PAT }}
+          ssh-key: ${{ secrets.TIA_DEVOPS_RO_DEPLOY_KEY }}
           path: .github/actions
