@@ -12,31 +12,15 @@ jobs:
   trufflehog:
     runs-on: ubuntu-latest
     steps:
-      # Need to checkout current repo first
       - uses: actions/checkout@v3
         name: Checkout current repo
         with:
-          repository: ${{ github.repository }}
-      # Do the magic: checkout action repo
-      - uses: actions/checkout@v3
-        name: Checkout action repo
+          fetch-depth: 0
+          ref: ${{ github.event.pull_request.head.sha }}
+      - uses: trufflesecurity/trufflehog@v3.23.0
+        name: TruffleHog with ignorefile
         with:
-          repository: AskTia/devops
-          ref: main
-          ssh-key: ${{ secrets.TIA_DEVOPS_RO_DEPLOY_KEY }}
-          path: .github/actions
-      #this checks out the trufflehog repo
-      - uses: ./.github/actions/trufflehog/lib
-        name: Run the trufflehog action
-        id: trufflehog
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          ignore-file: 'true'
-      #check back out
-      - uses: actions/checkout@v3
-        name: Re-check out actions repo
-        with:
-          repository: AskTia/devops
-          ref: main
-          ssh-key: ${{ secrets.TIA_DEVOPS_RO_DEPLOY_KEY }}
-          path: .github/actions
+          path: ./
+          base: ${{ github.event.repository.default_branch }}
+          head: HEAD
+          extra_args: --no-verification -x .trufflehogignore
