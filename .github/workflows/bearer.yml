@@ -7,34 +7,18 @@ on:
       - main
       - staging
 
+permissions:
+  contents: read
+
 jobs:
   bearer:
     runs-on: ubuntu-latest
     steps:
-      # Need to checkout current repo first
       - uses: actions/checkout@v3
         name: Checkout current repo
         with:
-          repository: ${{ github.repository }}
-      # Do the magic: checkout action repo
-      - uses: actions/checkout@v3
-        name: Checkout action repo
-        with:
-          repository: AskTia/devops
-          ref: main
-          token: ${{ secrets.TIA_GITHUB_PAT }}
-          path: .github/actions
-      #this checks out the bearer repo
-      - uses: ./.github/actions/bearer/lib
-        name: Run the bearer action
-        id: bearer
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-      #check back out
-      - uses: actions/checkout@v3
-        name: Re-check out actions repo
-        with:
-          repository: AskTia/devops
-          ref: main
-          token: ${{ secrets.TIA_GITHUB_PAT }}
-          path: .github/actions
+          fetch-depth: 0
+          ref: ${{ github.event.pull_request.head.sha }}
+      - uses: bearer/bearer-action@v1.0
+        name: Run Report
+        id: report
